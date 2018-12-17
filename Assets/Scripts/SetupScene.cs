@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SetupScene : MonoBehaviour
 {
-	public Mesh crateMesh;
+	//public Mesh crateMesh;
+	// store crate mesh from assest store
+	public GameObject crateObj;
+	public GameObject crateParent;
 	
 	private ParseCSV parseCSV;
 
@@ -16,7 +19,10 @@ public class SetupScene : MonoBehaviour
 	{
 		// grab the parse script + call Parse
 		parseCSV = this.GetComponent<ParseCSV>();
-		BTS = parseCSV.Parse();
+		//BTS = parseCSV.Parse();
+
+		GameObject newCrate = Instantiate(crateObj, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
+		newCrate.transform.name = "BTS";
 	}
 	
 	// Update is called once per frame
