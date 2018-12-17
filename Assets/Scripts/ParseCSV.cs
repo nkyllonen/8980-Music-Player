@@ -37,6 +37,7 @@ public class ParseCSV : MonoBehaviour
 
 	public List<Song> Parse()
 	{
+		Debug.Log("in Parse()");
 		// name the List with the artist name
 		List<Song> BTS = new List<Song>();
 
