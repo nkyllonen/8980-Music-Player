@@ -30,6 +30,7 @@ public class ParseCSV : MonoBehaviour
 		BTS.Add(new Song("Boy In Luv", "School Luv Affair", "BTS", "filepath"));
 		BTS.Add(new Song("Love Maze", "Love Yourself: Tear", "BTS", "somefile"));
 		BTS.Add(new Song("Magic Shop", "Love Yourself: Tear", "BTS", "somefile"));
+		BTS.Add(new Song("The Truth Untold", "Love Yourself: Tear", "BTS", "somefile"));
 
 		songs.Add(BTS);
 

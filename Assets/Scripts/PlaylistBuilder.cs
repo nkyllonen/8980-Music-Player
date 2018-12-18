@@ -26,7 +26,7 @@ public class PlaylistBuilder : MonoBehaviour {
 	{
         // display playlist information in the textmesh
 		playlist = playlist_crate.GetComponent<Playlist>().songs;
-        playlist_info.text = "";
+        playlist_info.text = "Playlist:\n";
         int i = 0;
 
         foreach (Song s in playlist)

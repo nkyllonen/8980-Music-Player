@@ -192,6 +192,9 @@ public class Grab : MonoBehaviour
 
   void DisplaySong(Song s)
   {
-    song_title.text = "'" + s.title + "'\n" + s.album_name + "\n" + s.artist_name;
+    song_title.text = "Currently selected:\n" + 
+                      "Title: '" + s.title + "'\n" +
+                      "Album: " + s.album_name + "\n" +
+                      "Artist: " + s.artist_name;
   }
 }
