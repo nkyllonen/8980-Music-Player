@@ -91,6 +91,14 @@ public class Grab : MonoBehaviour
       // set inHand's is kinematic back to false --> "turn back on" physics
       inHand.GetComponentInChildren<Rigidbody>().isKinematic = false;
 
+      // if object is song crate --> set lid box collider off
+      Artist a = inHand.GetComponent<Artist>();
+
+      if (a)
+      {
+
+      }
+
       // reset!
       inHand = null;
       old_pos = new Vector3();
@@ -117,10 +125,25 @@ public class Grab : MonoBehaviour
       // turn off any constraints if there are any --> for grabbing shuffled songs
       inHand.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-      // if object is a song cube --> display
+      // if object is a song cube --> display song info
       Song s = inHand.GetComponent<Song>();
 
       if (s) DisplaySong(s);
+      else
+      {
+        // if object is a song crate --> add a box collider on top
+        // add Box collider at Center: (0,0, 0.006f) Size: (0.02f, 0.02f, 0.001f)
+        // set lid box collider to active
+        foreach (BoxCollider bc in inHand.GetComponents<BoxCollider>())
+        {
+          // find the lid collider
+          if (bc.center.x == 0.0f && bc.center.y == 0.0f && bc.center.z > 0.0f)
+          {
+            bc.enabled = false;
+          }
+        }
+      }
+
     }
 
   } // END MoveObjectInHand()
@@ -136,6 +159,8 @@ public class Grab : MonoBehaviour
       if (Time.time - shuffle_time > between_time)
       {
         shuffle_time = Time.time;
+
+        if (a.song_cubes.Count <= 0) return;
 
         // randomly select a song
         int rand_i = Random.Range(0, a.song_cubes.Count);
