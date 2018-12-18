@@ -36,7 +36,7 @@ public class SetupScene : MonoBehaviour
 		List<Song> BTS_songs = songs[0];
 
 		// instantiate a new crate for this artist
-		GameObject newCrate = Instantiate(cratePrefab, new Vector3(1.0f, 0.5f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
+		GameObject newCrate = Instantiate(cratePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
 		newCrate.transform.name = "BTS";
 		Artist a = newCrate.GetComponent<Artist>();
 		a.artist_name = "BTS";
@@ -46,7 +46,7 @@ public class SetupScene : MonoBehaviour
 		//loop through and spawn song cubes --> add to crate's list (within Artist)
 		foreach (Song s in BTS_songs)
 		{
-			GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 0.6f, 1.0f), Quaternion.identity, crateParent.transform);
+			GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.6f, 1.0f), Quaternion.identity, crateParent.transform);
 			newSong.GetComponent<Song>().Copy(s);
 			newSong.transform.name = s.title;
 
@@ -77,7 +77,7 @@ public class SetupScene : MonoBehaviour
 		List<Song> D6_songs = songs[1];
 
 		// instantiate a new crate for this artist
-		newCrate = Instantiate(cratePrefab, new Vector3(-1.0f, 0.5f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
+		newCrate = Instantiate(cratePrefab, new Vector3(-1.0f, 1.5f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
 		newCrate.transform.name = "Day6";
 		a = newCrate.GetComponent<Artist>();
 		a.artist_name = "Day6";
@@ -87,7 +87,7 @@ public class SetupScene : MonoBehaviour
 		//loop through and spawn song cubes --> add to crate's list (within Artist)
 		foreach (Song s in D6_songs)
 		{
-			GameObject newSong = Instantiate(songCubePrefab, new Vector3(-1.0f, 0.6f, 1.0f), Quaternion.identity, crateParent.transform);
+			GameObject newSong = Instantiate(songCubePrefab, new Vector3(-1.0f, 1.6f, 1.0f), Quaternion.identity, crateParent.transform);
 			newSong.GetComponent<Song>().Copy(s);
 			newSong.transform.name = s.title;
 

@@ -21,7 +21,7 @@ public class Grab : MonoBehaviour
 
   // SHUFFLE //
   // public float mag_threshold = 0.1f; // this works for difference in position
-  public float mag_threshold = 9.0f;    // this seems to be a firm shake velocity
+  public float mag_threshold = 8.0f;    // this seems to be a firm shake velocity
   private Vector3 old_pos;
   private Vector3 new_pos;
   private float shuffle_time;
@@ -91,6 +91,21 @@ public class Grab : MonoBehaviour
       // set inHand's is kinematic back to false --> "turn back on" physics
       inHand.GetComponentInChildren<Rigidbody>().isKinematic = false;
 
+      // if object is song crate --> set lid box collider off
+      //Artist a = inHand.GetComponent<Artist>();
+
+      if (inHand.GetComponent<Artist>() || inHand.GetComponent<Playlist>())
+      {
+        foreach (BoxCollider bc in inHand.GetComponents<BoxCollider>())
+        {
+            // find the lid collider
+            if (bc.center.x == 0.0f && bc.center.y == 0.0f && bc.center.z > 0.0f)
+            {
+                bc.enabled = false;
+            }
+        }
+      }
+
       // reset!
       inHand = null;
       old_pos = new Vector3();
@@ -117,41 +132,69 @@ public class Grab : MonoBehaviour
       // turn off any constraints if there are any --> for grabbing shuffled songs
       inHand.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-      // if object is a song cube --> display
+      // if object is a song cube --> display song info
       Song s = inHand.GetComponent<Song>();
 
       if (s) DisplaySong(s);
+      else
+      {
+        // if object is a song or playlist crate --> set lid box collider to active
+        foreach (BoxCollider bc in inHand.GetComponents<BoxCollider>())
+        {
+          bc.enabled = true; // enable all box colliders
+          
+          // find the lid collider
+          // if (bc.center.x == 0.0f && bc.center.y == 0.0f && bc.center.z > 0.0f)
+          // {
+          //   bc.enabled = true;
+          // }
+        }
+      }
+
     }
 
   } // END MoveObjectInHand()
 
   void Shuffle()
   {
-    Artist a = inHand.GetComponent<Artist>();
-
-    // if the object has an Artist comp, must be a crate!
-    if (a)
+    Artist a;
+    Playlist p;
+    
+    if ((a = inHand.GetComponent<Artist>()) != null)
     {
+      // if the object has an Artist comp, must be a song crate!
       // if enough time since our last shuffle has gone by
       if (Time.time - shuffle_time > between_time)
       {
         shuffle_time = Time.time;
+
+        if (a.song_cubes.Count <= 0) return;
 
         // randomly select a song
         int rand_i = Random.Range(0, a.song_cubes.Count);
         GameObject cube = a.song_cubes[rand_i];
         Song song = cube.GetComponent<Song>();
 
-        cube.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        // cube.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        Vector3 cur_pos = cube.transform.position;
+        cube.transform.position = new Vector3(cur_pos.x, 1.5f, cur_pos.z);
         cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         DisplaySong(song);
       }
     }
+    else if ((p = inHand.GetComponent<Playlist>()) != null)
+    {
+      // if the object has a Playlist comp, must be a playlist crate!
+      p.Shuffle();
+    }
   }
 
   void DisplaySong(Song s)
   {
-    song_title.text = s.title + "\n" + s.album_name + "\n" + s.artist_name;
+    song_title.text = "Currently selected:\n" + 
+                      "Title: '" + s.title + "'\n" +
+                      "Album: " + s.album_name + "\n" +
+                      "Artist: " + s.artist_name;
   }
 }
