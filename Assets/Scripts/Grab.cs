@@ -104,6 +104,9 @@ public class Grab : MonoBehaviour
 
       // set inHand's is kinematic to true --> "turn off" physics
       inHand.GetComponentInChildren<Rigidbody>().isKinematic = true;
+
+      // turn off any constraints if there are any --> for grabbing shuffled songs
+      inHand.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
     }
 
   } // END MoveObjectInHand()

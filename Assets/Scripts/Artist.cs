@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Artist data object class
 public class Artist : MonoBehaviour
 {
 	// list of the song cube GObjs for this Artist

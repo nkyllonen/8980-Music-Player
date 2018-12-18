@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Songs data object class
+// Song data object class
 public class Song : MonoBehaviour
 {
 	public string title, album_name, filepath;
