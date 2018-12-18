@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Grab : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Grab : MonoBehaviour
   private bool finishedGrabbing = false;
   public GameObject inHand;
 
-  // shaking
+  // SHUFFLE //
   // public float mag_threshold = 0.1f; // this works for difference in position
   public float mag_threshold = 9.0f;    // this seems to be a firm shake velocity
   private Vector3 old_pos;
@@ -26,10 +27,14 @@ public class Grab : MonoBehaviour
   private float shuffle_time;
   private float between_time = 0.5f;
 
+  // TEXT //
+  public TextMesh song_title;
+
   // Start is called before the first frame update
   void Start()
   {
     trackedObj = GetComponent<SteamVR_TrackedObject>();
+    song_title.text = "No song selected";
   }  
 
   //Update is called once per frame
@@ -125,11 +130,14 @@ public class Grab : MonoBehaviour
 
         // randomly select a song
         int rand_i = Random.Range(0, a.song_cubes.Count);
-        GameObject song = a.song_cubes[rand_i];
+        GameObject cube = a.song_cubes[rand_i];
+        Song song = cube.GetComponent<Song>();
 
-        Debug.Log(song.GetComponent<Song>().title);
-        song.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
-        song.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        cube.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        // Debug.Log(song.title);
+        song_title.text = song.title + "\n" + song.album_name;
       }
     }
   }
