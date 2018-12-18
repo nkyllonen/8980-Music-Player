@@ -29,16 +29,16 @@ public class Playlist : MonoBehaviour
 		while (hash.Count < songs.Count)
 		{
 			Song s = temp[Random.Range(0, songs.Count)];
-			Debug.Log("Shuffled: " + s);
+			//Debug.Log("Shuffled: " + s);
 			hash.Add(s);
 		}
 
 		//songs.Clear();
 		songs = hash;
 
-		foreach (Song s in songs)
-		{
-			Debug.Log(s.title);
-		}
+		// foreach (Song s in songs)
+		// {
+		// 	Debug.Log(s.title);
+		// }
 	}
 }

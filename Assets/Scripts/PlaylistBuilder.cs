@@ -60,6 +60,12 @@ public class PlaylistBuilder : MonoBehaviour {
 
 				// teleport cube to playlist crate
 				s.transform.position = playlist_crate.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+
+				// shift playlist text up to make more room
+				if (playlist.Count > 5)
+				{
+					playlist_info.transform.localPosition += new Vector3(0.0f, 0.0f, 0.2f);
+				}
 			}
 		}
 	}
