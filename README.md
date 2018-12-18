@@ -6,3 +6,5 @@ CSCI 8980 Immersive User Interfaces: Final Project
 
 - Low Poly Crates:
 Unity Asset Store: https://assetstore.unity.com/packages/3d/props/low-poly-crates-80037
+
+- Steam VR from Steam
