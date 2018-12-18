@@ -15,46 +15,55 @@ public class SetupScene : MonoBehaviour
 	// TODO: make this a List of artists, not one artist
 	//public List<Song> BTS;
 
+	public Material yf_mat;
+	public Material luv_mat;
+	public Material ly_mat;
+	public Material default_mat;
+
 	// Use this for initialization
 	void Start ()
 	{
 		// grab the parse script + call Parse
 		parse_script = gameObject.GetComponent<ParseCSV>();
-		//List<GameObject> BTS = parse_script.Parse();
+		List<Song> BTS_songs = parse_script.Parse();
 
 		// instantiate a new crate for this artist
-		GameObject newCrate = Instantiate(cratePrefab, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
+		GameObject newCrate = Instantiate(cratePrefab, new Vector3(1.0f, 0.5f, 1.0f), Quaternion.Euler(-90,0,0), crateParent.transform);
 		newCrate.transform.name = "BTS";
 		Artist a = newCrate.GetComponent<Artist>();
 		a.artist_name = "BTS";
-		//a.song_cubes = BTS_cubes;
 
 		List<GameObject> BTS_cubes = a.song_cubes;
 
-		GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
-		Song s = newSong.GetComponent<Song>();
-		s.Set("Butterfly", "Young Forever", "filepath");
-		newSong.transform.name = s.title;
-		BTS_cubes.Add(newSong);
+		//loop through and spawn song cubes --> add to crate's list (within Artist)
+		foreach (Song s in BTS_songs)
+		{
+			GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 0.5f, 1.0f), Quaternion.identity, crateParent.transform);
+			newSong.GetComponent<Song>().Copy(s);
+			newSong.transform.name = s.title;
 
-		newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
-		s = newSong.GetComponent<Song>();
-		s.Set("SpineBreaker", "School Luv Affair", "filepath");
-		newSong.transform.name = s.title;
-		BTS_cubes.Add(newSong);
+			// set material
+			Material m = default_mat;
+			switch (s.album_name)
+			{
+				case "Young Forever":
+					m = yf_mat;
+					break;
+				case "School Luv Affair":
+					m = luv_mat;
+					break;
+				case "Love Yourself: Tear":
+					m = ly_mat;
+					break;
+				default:
+					Debug.Log("Hit default case");
+					break;
+			}
 
-		newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
-		s = newSong.GetComponent<Song>();
-		s.Set("Maze", "Love Yourself: Tear", "somefile");
-		newSong.transform.name = s.title;
-		BTS_cubes.Add(newSong);
+			newSong.gameObject.GetComponentInChildren<Renderer>().material = m;
 
-		// loop through and spawn song cubes
-		// foreach (GameObject s in BTS)
-		// {
-		// 	GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
-		// 	newSong.transform.name = s.title;
-		// }
+			BTS_cubes.Add(newSong);
+		}
 	}
 	
 	// Update is called once per frame

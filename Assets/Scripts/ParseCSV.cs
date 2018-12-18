@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ParseCSV : MonoBehaviour
 {
-	public GameObject crateParent;
-	public GameObject songCubePrefab;
-
 	private string songdir_path = "";
 
 	// Use this for initialization
@@ -18,19 +15,19 @@ public class ParseCSV : MonoBehaviour
 	// Update is called once per frame
 	void Update () {}
 
-	public List<GameObject> Parse()
+	public List<Song> Parse()
 	{
+		// Debug.Log("in Parse()");
 		// name the List with the artist name
-		List<GameObject> BTS_cubes = new List<GameObject>();
+		List<Song> BTS = new List<Song>();
 
-		// BTS.Add(new Song("Butterfly", "Young Forever", "filepath"));
-		// BTS.Add(new Song("SpineBreaker", "School Luv Affair", "filepath"));
-		// BTS.Add(new Song("Maze", "Love Yourself: Tear", "somefile"));
+		BTS.Add(new Song("Butterfly", "Young Forever", "filepath"));
+		BTS.Add(new Song("Young Forever", "Young Forever", "filepath"));
+		BTS.Add(new Song("SpineBreaker", "School Luv Affair", "filepath"));
+		BTS.Add(new Song("Boy In Luv", "School Luv Affair", "filepath"));
+		BTS.Add(new Song("Love Maze", "Love Yourself: Tear", "somefile"));
+		BTS.Add(new Song("Magic Shop", "Love Yourself: Tear", "somefile"));
 
-		GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
-		newSong.transform.name = "";
-		BTS_cubes.Add(newSong);
-
-		return BTS_cubes;
+		return BTS;
 	}
 }
