@@ -6,8 +6,10 @@ public class Playlist : MonoBehaviour
 {
 	public HashSet<Song> songs;
 
-	// Use this for initialization
-	void Start ()
+    public TextMesh playlist_info;
+
+    // Use this for initialization
+    void Start ()
 	{
 		songs = new HashSet<Song>();
 	}
@@ -41,4 +43,56 @@ public class Playlist : MonoBehaviour
 		// 	Debug.Log(s.title);
 		// }
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered lid of playlist crate");
+
+        // check to see it's a song cube
+        Song s = other.GetComponent<Song>();
+        if (s)
+        {
+            if (songs.Add(s))
+            {
+                Debug.Log("Added " + s.title + " to playlist");
+
+                // unparent from selector
+                other.transform.SetParent(null);
+
+                // shift playlist text up to make more room
+                if (songs.Count > 5)
+                {
+                    playlist_info.transform.localPosition += new Vector3(0.0f, 0.0f, 0.2f);
+                }
+            }
+            else
+            {
+                Debug.Log("Failed to add");
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        /*Debug.Log("Trigger stay");
+
+        // check to see it's a song cube
+        Song s = other.GetComponent<Song>();
+        if (s)
+        {
+            if (songs.Add(s))
+            {
+                Debug.Log("Added " + s.title + " to playlist");
+
+                // unparent from selector
+                other.transform.SetParent(null);
+
+                // shift playlist text up to make more room
+                if (songs.Count > 5)
+                {
+                    playlist_info.transform.localPosition += new Vector3(0.0f, 0.0f, 0.2f);
+                }
+            }
+        }*/
+    }
 }
