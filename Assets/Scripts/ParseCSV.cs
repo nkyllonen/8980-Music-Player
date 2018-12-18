@@ -21,12 +21,12 @@ public class ParseCSV : MonoBehaviour
 		// name the List with the artist name
 		List<Song> BTS = new List<Song>();
 
-		BTS.Add(new Song("Butterfly", "Young Forever", "filepath"));
-		BTS.Add(new Song("Young Forever", "Young Forever", "filepath"));
-		BTS.Add(new Song("SpineBreaker", "School Luv Affair", "filepath"));
-		BTS.Add(new Song("Boy In Luv", "School Luv Affair", "filepath"));
-		BTS.Add(new Song("Love Maze", "Love Yourself: Tear", "somefile"));
-		BTS.Add(new Song("Magic Shop", "Love Yourself: Tear", "somefile"));
+		BTS.Add(new Song("Butterfly", "Young Forever", "BTS", "filepath"));
+		BTS.Add(new Song("Young Forever", "Young Forever", "BTS", "filepath"));
+		BTS.Add(new Song("SpineBreaker", "School Luv Affair", "BTS", "filepath"));
+		BTS.Add(new Song("Boy In Luv", "School Luv Affair", "BTS", "filepath"));
+		BTS.Add(new Song("Love Maze", "Love Yourself: Tear", "BTS", "somefile"));
+		BTS.Add(new Song("Magic Shop", "Love Yourself: Tear", "BTS", "somefile"));
 
 		return BTS;
 	}

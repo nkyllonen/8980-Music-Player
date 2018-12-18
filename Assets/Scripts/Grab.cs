@@ -34,7 +34,11 @@ public class Grab : MonoBehaviour
   void Start()
   {
     trackedObj = GetComponent<SteamVR_TrackedObject>();
+
+    // initialize text mesh properties
     song_title.text = "No song selected";
+    song_title.characterSize = 0.1f;
+    song_title.fontSize = 35;
   }  
 
   //Update is called once per frame
@@ -112,6 +116,11 @@ public class Grab : MonoBehaviour
 
       // turn off any constraints if there are any --> for grabbing shuffled songs
       inHand.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+      // if object is a song cube --> display
+      Song s = inHand.GetComponent<Song>();
+
+      if (s) DisplaySong(s);
     }
 
   } // END MoveObjectInHand()
@@ -136,9 +145,13 @@ public class Grab : MonoBehaviour
         cube.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
         cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-        // Debug.Log(song.title);
-        song_title.text = song.title + "\n" + song.album_name;
+        DisplaySong(song);
       }
     }
+  }
+
+  void DisplaySong(Song s)
+  {
+    song_title.text = s.title + "\n" + s.album_name + "\n" + s.artist_name;
   }
 }
