@@ -15,11 +15,12 @@ public class ParseCSV : MonoBehaviour
 	// Update is called once per frame
 	void Update () {}
 
+	// return a list holding lists of songs --> each corresponding to a diff artist
 	public List<List<Song>> Parse()
 	{
 		List<List<Song>> songs = new List<List<Song>>();
 
-		// name the List with the artist name
+		// list of BTS songs
 		List<Song> BTS = new List<Song>();
 
 		BTS.Add(new Song("Butterfly", "Young Forever", "BTS", "filepath"));
@@ -32,6 +33,7 @@ public class ParseCSV : MonoBehaviour
 
 		songs.Add(BTS);
 
+		// list of Day6 songs
 		List<Song> D6 = new List<Song>();
 
 		D6.Add(new Song("아픈 길 (Hurt Road)", "Remember Us", "Day6", "filepath"));
