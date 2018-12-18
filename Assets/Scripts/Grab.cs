@@ -96,7 +96,14 @@ public class Grab : MonoBehaviour
 
       if (a)
       {
-
+        foreach (BoxCollider bc in inHand.GetComponents<BoxCollider>())
+        {
+            // find the lid collider
+            if (bc.center.x == 0.0f && bc.center.y == 0.0f && bc.center.z > 0.0f)
+            {
+                bc.enabled = false;
+            }
+        }
       }
 
       // reset!
@@ -131,15 +138,13 @@ public class Grab : MonoBehaviour
       if (s) DisplaySong(s);
       else
       {
-        // if object is a song crate --> add a box collider on top
-        // add Box collider at Center: (0,0, 0.006f) Size: (0.02f, 0.02f, 0.001f)
-        // set lid box collider to active
+        // if object is a song crate --> set lid box collider to active
         foreach (BoxCollider bc in inHand.GetComponents<BoxCollider>())
         {
           // find the lid collider
           if (bc.center.x == 0.0f && bc.center.y == 0.0f && bc.center.z > 0.0f)
           {
-            bc.enabled = false;
+            bc.enabled = true;
           }
         }
       }
