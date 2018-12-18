@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Songs data object class
+// Song data object class
 public class Song : MonoBehaviour
 {
-	public string title, album_name, filepath;
+	public string title, album_name, artist_name, filepath;
 
 	public Song()
 	{
 		title = "";
 		album_name = "";
+		artist_name = "";
 		filepath = "";
 	}
 
-	public Song(string name, string album, string file)
+	public Song(string name, string album, string artist, string file)
 	{
 		title = name;
 		album_name = album;
+		artist_name = artist;
 		filepath = file;
 	}
 
-	public void Set(string name, string album, string file)
+	public void Set(string name, string album, string artist, string file)
 	{
 		title = name;
 		album_name = album;
+		artist_name = artist;
 		filepath = file;
 	}
 
@@ -32,6 +35,7 @@ public class Song : MonoBehaviour
 	{
 		this.title = s.title;
 		this.album_name = s.album_name;
+		this.artist_name = s.artist_name;
 		this.filepath = s.filepath;
 	}
 }
