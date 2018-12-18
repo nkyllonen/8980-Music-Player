@@ -14,4 +14,15 @@ public class Artist : MonoBehaviour
 		song_cubes = new List<GameObject>();
 		artist_name = "";
 	}
+
+	public Artist(string n)
+	{
+		artist_name = n;
+	}
+
+	public void Copy(Artist a)
+	{
+		this.song_cubes = a.song_cubes;
+		this.artist_name = a.artist_name;
+	}
 }
