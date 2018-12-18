@@ -24,6 +24,7 @@ public class ParseCSV : MonoBehaviour
 
 		BTS.Add(new Song("Butterfly", "Young Forever", "BTS", "filepath"));
 		BTS.Add(new Song("Young Forever", "Young Forever", "BTS", "filepath"));
+		BTS.Add(new Song("Save Me", "Young Forever", "BTS", "filepath"));
 		BTS.Add(new Song("SpineBreaker", "School Luv Affair", "BTS", "filepath"));
 		BTS.Add(new Song("Boy In Luv", "School Luv Affair", "BTS", "filepath"));
 		BTS.Add(new Song("Love Maze", "Love Yourself: Tear", "BTS", "somefile"));
@@ -33,10 +34,11 @@ public class ParseCSV : MonoBehaviour
 
 		List<Song> D6 = new List<Song>();
 
-		D6.Add(new Song("Hurt Road", "Remember Us", "Day6", "filepath"));
-		D6.Add(new Song("Days Gone By", "Remember Us", "Day6", "filepath"));
+		D6.Add(new Song("아픈 길 (Hurt Road)", "Remember Us", "Day6", "filepath"));
+		D6.Add(new Song("행복했던 알들이었다 (Days Gone By)", "Remember Us", "Day6", "filepath"));
 		D6.Add(new Song("Better Better", "Moonrise", "Day6", "filepath"));
 		D6.Add(new Song("좋아합니다", "Moonrise", "Day6", "filepath"));
+		D6.Add(new Song("Hi Hello", "Moonrise", "Day6", "filepath"));
 		D6.Add(new Song("Shoot Me", "Shoot Me", "Day6", "somefile"));
 		D6.Add(new Song("Feeling Good", "Shoot Me", "Day6", "somefile"));
 
