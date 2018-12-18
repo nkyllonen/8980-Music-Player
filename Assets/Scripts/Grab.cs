@@ -18,9 +18,12 @@ public class Grab : MonoBehaviour
   private bool finishedGrabbing = false;
   public GameObject inHand;
 
+  private SetupScene setup_script;
+
   // Start is called before the first frame update
   void Start()
   {
+    setup_script = gameObject.GetComponent<SetupScene>();
     trackedObj = GetComponent<SteamVR_TrackedObject>();
   }  
 
@@ -70,6 +73,14 @@ public class Grab : MonoBehaviour
 
       // set inHand's is kinematic to true --> "turn off" physics
       inHand.GetComponentInChildren<Rigidbody>().isKinematic = true;
+
+      // try to access the List<Song> corresponding to this object
+      // (if it exists)
+      // if (inHand.transform.name == "BTS")
+      // {
+      //   List<Song> crate_list = setup_script.BTS;
+      //   Debug.Log(crate_list);
+      // }
     }
 
   }

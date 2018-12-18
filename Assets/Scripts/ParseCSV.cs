@@ -2,29 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Songs data object class
-public class Song
-{
-	public string title, album_name, filepath;
-
-	public Song()
-	{
-		title = "";
-		album_name = "";
-		filepath = "";
-	}
-
-	public Song(string name, string album, string file)
-	{
-		title = name;
-		album_name = album;
-		filepath = file;
-	}
-}
-
 public class ParseCSV : MonoBehaviour
 {
-	private string filepath = "";
+	public GameObject crateParent;
+	public GameObject songCubePrefab;
+
+	private string songdir_path = "";
 
 	// Use this for initialization
 	void Start ()
@@ -35,16 +18,19 @@ public class ParseCSV : MonoBehaviour
 	// Update is called once per frame
 	void Update () {}
 
-	public List<Song> Parse()
+	public List<GameObject> Parse()
 	{
-		Debug.Log("in Parse()");
 		// name the List with the artist name
-		List<Song> BTS = new List<Song>();
+		List<GameObject> BTS_cubes = new List<GameObject>();
 
-		BTS.Add(new Song("Butterfly", "Young Forever", "filepath"));
-		BTS.Add(new Song("SpineBreaker", "School Luv Affair", "filepath"));
-		BTS.Add(new Song("Maze", "Love Yourself: Tear", "somefile"));
+		// BTS.Add(new Song("Butterfly", "Young Forever", "filepath"));
+		// BTS.Add(new Song("SpineBreaker", "School Luv Affair", "filepath"));
+		// BTS.Add(new Song("Maze", "Love Yourself: Tear", "somefile"));
 
-		return BTS;
+		GameObject newSong = Instantiate(songCubePrefab, new Vector3(1.0f, 1.5f, 1.0f), Quaternion.identity, crateParent.transform);
+		newSong.transform.name = "";
+		BTS_cubes.Add(newSong);
+
+		return BTS_cubes;
 	}
 }

@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 65474219517144090}
   - component: {fileID: 65079974713334906}
   - component: {fileID: 65696615391237006}
+  - component: {fileID: 114566494180520730}
   m_Layer: 0
   m_Name: SongCrate
   m_TagString: Untagged
@@ -165,3 +166,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.018402556, y: 0.0019499152, z: 0.009425224}
   m_Center: {x: 0.000007939934, y: 0.0063457466, z: 0.00064187107}
+--- !u!114 &114566494180520730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311333336030602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a00b03f0337c148b54ecab0de13ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
