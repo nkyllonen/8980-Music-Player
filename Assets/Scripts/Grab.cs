@@ -23,6 +23,8 @@ public class Grab : MonoBehaviour
   public float mag_threshold = 9.0f;    // this seems to be a firm shake velocity
   private Vector3 old_pos;
   private Vector3 new_pos;
+  private float shuffle_time;
+  private float between_time = 0.5f;
 
   // Start is called before the first frame update
   void Start()
@@ -51,7 +53,7 @@ public class Grab : MonoBehaviour
       MoveObjectInHand();
     }
 
-    // User is still holding trigger
+    // User is still holding trigger --> can shuffle!
     if (isGrabbing && inHand)
     {
       // store change in position
@@ -108,6 +110,24 @@ public class Grab : MonoBehaviour
 
   void Shuffle()
   {
+    Artist a = inHand.GetComponent<Artist>();
 
+    // if the object has an Artist comp, must be a crate!
+    if (a)
+    {
+      // if enough time since our last shuffle has gone by
+      if (Time.time - shuffle_time > between_time)
+      {
+        shuffle_time = Time.time;
+
+        // randomly select a song
+        int rand_i = Random.Range(0, a.song_cubes.Count);
+        GameObject song = a.song_cubes[rand_i];
+
+        Debug.Log(song.GetComponent<Song>().title);
+        song.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        song.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+      }
+    }
   }
 }
